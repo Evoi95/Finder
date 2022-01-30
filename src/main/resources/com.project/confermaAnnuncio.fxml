@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="245.0" layoutY="185.0" mnemonicParsing="false" text="Invia" />
+      <Button layoutX="307.0" layoutY="185.0" mnemonicParsing="false" text="Annulla" />
+      <Text layoutX="24.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci qui sotto le informarzioni del tuo game account esterne a Finder" wrappingWidth="200.0" />
+      <TextArea layoutX="24.0" layoutY="140.0" prefHeight="70.0" prefWidth="200.0" promptText="nome in game, account per il voice chat, e risposte a requisiti espressi nell'annuncio" />
+      <Text layoutX="95.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RICORDATI DI INSERIRE I TUOI DATI " />
+   </children>
+</Pane>
