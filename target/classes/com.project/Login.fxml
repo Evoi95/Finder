@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boundary.LoginBoundary">
+   <children>
+      <TextField fx:id="emailTextField" layoutX="246.0" layoutY="189.0" promptText="User or Email" />
+      <TextField fx:id="passwordTextField" layoutX="246.0" layoutY="257.0" promptText="Password" />
+      <Label fx:id="descLabel" layoutX="233.0" layoutY="100.0" text="Inserisci le credenziali di accesso " />
+      <Label fx:id="toolBoxLabel" layoutX="299.0" layoutY="41.0" text="Finder Login" />
+      <Label fx:id="userLabel" layoutX="101.0" layoutY="193.0" text="Username / Email" />
+      <Label fx:id="passwordLabel" layoutX="134.0" layoutY="261.0" text="Password" />
+      <Button fx:id="loginButton" layoutX="496.0" layoutY="226.0" mnemonicParsing="false" text="Login" />
+   </children>
+</AnchorPane>
