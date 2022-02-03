@@ -27,13 +27,7 @@ public class ControllerLogin {
             Log.logger.log(Level.INFO,"Accesso Scorciatoia da ADMIM ");
             esito = true;
         }
-        else if (m.equals("bigHand@gmail.com") && p.equals("bigHand97")){
-            Log.logger.log(Level.INFO,"Accesso autorizzato ");
-            esito = true;
-
-        }
         else {
-
             user.setEmail(m);
             user.setPassword(p);
             if(UtenteDao.checkUser(user) == -1)
@@ -45,7 +39,7 @@ public class ControllerLogin {
                 String r =UtenteDao.getRuolo(user);
                 UtenteDao.pickData(user);
                 Log.logger.log(Level.INFO,"\n loggato come : {0}",r);
-                SingeltonSystemState.getIstance().setIsLogged(true);
+                SystemState.getIstance().setIsLogged(true);
                 esito = true;
                 return esito;
             }
@@ -59,6 +53,8 @@ public class ControllerLogin {
         }
         return esito;
     }
+
+
 
 
 

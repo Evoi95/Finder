@@ -7,6 +7,7 @@ module com.example.finder {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.logging;
+    requires mybatis;
 
 
     opens com.example.finder to javafx.fxml;

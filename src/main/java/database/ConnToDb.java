@@ -54,7 +54,7 @@ public class ConnToDb
 			{
 				//actuac DB project
 
-				 url2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+				 url2 = "jdbc:mysql://localhost/finder?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 				Class.forName(c.getDriver());
 				
 				Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
@@ -89,7 +89,7 @@ public class ConnToDb
 
 		try
 		{
-			 url2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			 url2 = "jdbc:mysql://localhost/finder?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			Class.forName(c.getDriver());
 			Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
 			conn = DriverManager.getConnection(url2, c.getUser(),c.getPwd());

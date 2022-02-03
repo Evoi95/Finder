@@ -8,6 +8,7 @@ public class Annuncio {
     private String lungaDescrizione;
     private String gioco;
     private int voiceChat;
+    private int creator;
 
     public int getIdAnnuncio() {
         return idAnnuncio;
@@ -49,7 +50,6 @@ public class Annuncio {
         this.gioco = gioco;
     }
 
-
     public int getVoiceChat() {
         return voiceChat;
     }
@@ -58,6 +58,33 @@ public class Annuncio {
         this.voiceChat = voiceChat;
     }
 
+    public int getCreator() {
+        return creator;
+    }
 
+    public void setCreator(int creator) {
+        this.creator = creator;
+    }
 
+    public Annuncio()
+    {
+        idAnnuncio = -1;
+        nomeAnnuncio = null;
+        breveDescrizione = null;
+        lungaDescrizione = null;
+        gioco = null;
+        voiceChat = -1;
+        creator = -1 ;
+    }
+
+    public Annuncio(int id,String name,String shortDesc,String longDesc, String game, int voice, int crea)
+    {
+        idAnnuncio = id;
+        nomeAnnuncio = name;
+        breveDescrizione = shortDesc;
+        lungaDescrizione = longDesc;
+        gioco = game;
+        voiceChat = voice;
+        creator = crea;
+    }
 }
