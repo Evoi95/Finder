@@ -9,15 +9,13 @@ import logger.Log;
 
 public class CreateDefaultDB 
 {
-	private static Statement st = null ;
-	private static String query ;
 
-
-
-	
 	public static void createDefaultDB () throws SQLException, FileNotFoundException
 	{
+		Statement st = null ;
+		String query ;
 		boolean status=false;
+
 		try 
 		{
 			status = ConnToDb.initailConnection() && !ConnToDb.connection() ; 
@@ -26,7 +24,6 @@ public class CreateDefaultDB
 			// Se non trovo il db chiamo questa funzione che lo crea
 			if(status) 
 			{
-				//
 				st = ConnToDb.conn.createStatement();
 				query="CREATE DATABASE IF NOT EXISTS finder ";
 				st.execute(query);
@@ -35,44 +32,44 @@ public class CreateDefaultDB
 				Log.logger.log(Level.INFO,"Connesso a mysql workbench, ma non ho torvato il database 'ispw'"
 						+ "Database creato "
 						+ " Chiamo la Stored Procedure, per creare le tabelle");
-				
-				query=	"CREATE TABLE IF NOT EXISTS UTENTI\n" +
-						"(idUser INT primary key not null auto_increment,\n" +
-						"Nome VARCHAR(40), \n" +
-						"Email VARCHAR(50), pwd VARCHAR(16),\n" +
-						"NickName VARCHAR(10),\n" +
+
+				query=	"CREATE TABLE IF NOT EXISTS UTENTI" +
+						"(idUser INT primary key not null auto_increment," +
+						"Nome VARCHAR(40), " +
+						"Email VARCHAR(50), pwd VARCHAR(16)," +
+						"NickName VARCHAR(10)," +
 						"idRuolo VARCHAR(1) NOT NULL DEFAULT 'U') ; ";
 				st.executeUpdate(query);
 
-				query= "CREATE TABLE IF NOT EXISTS GAMELIST\n" +
+				query= "CREATE TABLE IF NOT EXISTS GAMELIST" +
 						"(" +
-						"idGame INT primary key not null auto_increment,\n" +
-						"nomeGioco VARCHAR(100) not null\n" +
+						"idGame INT primary key not null auto_increment," +
+						"nomeGioco VARCHAR(100) not null" +
+						");";
+				st.executeUpdate(query);
+				query = "CREATE table if not exists annuncio" +
+						"(" +
+						" idAnnucio int primary key not null auto_increment," +
+						" nomeAnnuncio VARCHAR(100), " +
+						" shortDescription varchar(100), longDescription text," +
+						" voiceChat int ," +
+						" gameC int not null, creator int not null," +
+						" foreign key (creator) references UTENTI(idUser)," +
+						" foreign key (gameC) references GAMELIST(idgame)" +
 						");";
 				st.executeUpdate(query);
 
-				query = "CREATE table if not exists annuncio\n" +
-						"(\n" +
-						" idAnnucio int primary key not null auto_increment,\n" +
-						" nomeAnnuncio VARCHAR(100), \n" +
-						" shortDescription varchar(100), longDescription text,\n" +
-						" voiceChat int ,\n" +
-						" gameC int not null, creator int not null,\n" +
-						" foreign key (creator) references UTENTI(idUser),\n" +
-						" foreign key (gameC) references GAMELIST(idgame)\n" +
-						");";
-				st.executeUpdate(query);
+
 
 				Log.logger.log(Level.INFO,"Tabelle create!");
-				
+
 				if (PopulateDefaultDb.populateDefaultDb()) {
 					Log.logger.log(Level.INFO,"Tabella populata con valori di default");
 					if (Boolean.TRUE.equals(status))
 					{
-						ConnToDb.conn.close();
 						Log.logger.log(Level.INFO,"Trigger creati e connesione chiusa col db");
 						Log.logger.log(Level.INFO,"Trovato database e connesso senza problemi! Buone madonne!");
-						ConnToDb.conn.close();	
+						ConnToDb.conn.close();
 					}
 					else
 					{
@@ -100,6 +97,10 @@ public class CreateDefaultDB
 			e1.printStackTrace();
 			Log.logger.log(Level.WARNING,"ERRORE DI SQL ");
 		}
+		finally {
+			ConnToDb.conn.close();
+		}
+
 		
 		
 	}

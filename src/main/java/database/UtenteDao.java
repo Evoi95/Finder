@@ -8,18 +8,17 @@ import java.util.logging.Level;
 
 public class UtenteDao {
 
-    private static Statement st = null ;
+    private static Statement st ;
     private static String query ;
     private static ResultSet rs;
-    private static PreparedStatement prepQ = null;
     private static Connection conn;
-    private static int max;
     private static String r;
-    private static boolean state=false;
+    private static boolean state;
+    private static PreparedStatement prepQ;
     private static String useDb="USE Finder;";
-    private Utente u ;
 
-    public boolean createUtente(Utente u) throws SQLException {
+    public static boolean createUtente(Utente u) throws SQLException {
+
         try
         {
             if (ConnToDb.connection())
@@ -28,20 +27,17 @@ public class UtenteDao {
                 st=conn.createStatement();
                 query=useDb;
                 st.executeQuery(query);
-                query= "INSERT INTO `finder`.`utenti`\n" +
-                        "(`idRuolo`,\n" +
-                        "`Nome`,\n" +
-                        "`Email`,\n" +
-                        "`pwd`,\n" +
-                        "`NickName`)\n"
-                        + "VALUES"
-                        +" "
-                        + "(?,?,?,?,?)";
+                query= "INSERT INTO `finder`.`utenti`" +
+                        "(`Nome`," +
+                        "`Email`," +
+                        "`pwd`," +
+                        "`NickName`)" +
+                        " Values (?,?,?,?);";
                 prepQ = ConnToDb.conn.prepareStatement(query);
-                //prepQ.setString(1,User.getInstance().getNome());
-                //prepQ.setString(2,User.getInstance().getCognome());
-                //prepQ.setString(3,User.getInstance().getEmail());
-                //prepQ.setString(4, User.getInstance().getPassword());
+                prepQ.setString(1,u.getName());
+                prepQ.setString(2,u.getEmail());
+                prepQ.setString(3,u.getPassword());
+                prepQ.setString(4,u.getNickName());
                 prepQ.executeUpdate();
 
                 state= true;
@@ -65,7 +61,7 @@ public class UtenteDao {
         return false;
     }
 
-    public boolean deleteUtente(Utente user)
+    public static boolean deleteUtente(Utente user)
     {
         String email = user.getEmail();
         String ruolo = user.getRuolo();
@@ -110,8 +106,6 @@ public class UtenteDao {
 
     public static int checkUser(Utente u) throws SQLException
     {
-        // ritorna int per motivi legati al controller
-        // anche se lo tratto come boolean
         String email = u.getEmail();
         int id;
         try
@@ -144,6 +138,7 @@ public class UtenteDao {
         }
         return -1 ;
     }
+
 
     public static Utente pickData(Utente u)
     {

@@ -9,8 +9,6 @@ public class Utente {
     private String nickName;
     private String role;
 
-    private static Utente instance = new Utente();
-
     public int getIdUser() {
         return idUser;
     }
